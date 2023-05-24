@@ -3,7 +3,15 @@ package implicits
 /** the import further down wins - swap them around to change results */
 import Implicits1._
 import Implicits2._
-/** n.b. if we swap the implicits for extension methods, the behaviour is as expected, i.e. we get a compiler error re ambiguous implicits. I.e. quite likely this is a case of 'dont use implicits' */
+/** Remarks:
+ *  1) If both imports are uncommented, the behaviour between Scala2 and Scala3 differ:
+ *     Scala2 errors with `value extMethod is not a member of implicits.ClassA`
+ *     - that's ok but a hint about 'ambiguous implicits' would have been nice
+ *     Scala3 doesn't chooses the one that's imported further down.
+ *
+ *  2) If we swap the implicits for extension methods, the behaviour is as expected, 
+ *  i.e. we get a compiler error re ambiguous implicits.
+ *  I.e. quite likely this is a case of 'dont use implicits' */
 
 import scala.language.implicitConversions
 
